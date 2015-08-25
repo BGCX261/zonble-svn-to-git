@@ -1,0 +1,89 @@
+#labels Featured,ColorBy.ColorPicker
+# Introduction to !ColorBy.!ColorPicker
+
+2007 © Weizhong Yang (a.k.a zonble), all rights reserved.
+
+= Introduction =
+
+* !ColorBy.colorPicker * is a system-wide color picker for Cocoa developers.
+
+If you need to create an NSColor object in your Objective-C project, you can use this small utility to help you generate the source code with NSColor class methods and the values of a color by clicking on the color picker.
+
+= Current Version =
+
+Version 0.1
+
+= Requirement =
+
+Mac OS X 10.4 Tiger or above, including Mac OS X 10.5 Leopard.
+
+It's a universal binary, so it can run on both PowerPc and Intel Macs.
+
+= Localizations = 
+
+This utility is localized in:
+
+ * English
+ * Traditional Chinese
+
+= Installation =
+
+  * Download the zipped archive.
+  * Unzip the archive.
+  * Drop the _colorBy.colorPicker_ bundle to ~/Library/!ColorPickers folder, or the /Library/!ColorPickers folder .
+  * Launch any Cocoa applications (Most built-in applications within Mac OS X are developed by the Cocoa framework, such as the default text editor-!TextEdit.app), open the color picker panel, and colorBy.!ColorPicker should be shown there.
+
+= Usage =
+
+== Basic ==
+
+Sometimes I think that Apple should include this function in their developer tools: to create an NSColor object by easily clicking on the color picker. So, I wrote this small utility.
+
+At first, you can pick a color from any other color pickers, such as the color wheel or the color scrollers. When a color is selected, you may switch to the colorBy.colorPicker panel, you will see the generated codes displayed in the text areas. The colorBy.colorPicker panel offers three text areas, each of them generates the code of a color in the HSB (Hue, Saturation and Brightness) model, the RGB (Red, Green and Blue) model and the CMYK (Cyan, Magenta, Yellow and Black) model.
+
+Then, you can copy the generated code by clicking on the "Copy" button in the right side, or drag the code into your favorite text editors. Clicking on the text area, the dragging will begin immediately. 
+
+== Methods ==
+
+!ColorBy.colorPicker uses the class methods of NSColor class, including: 
+
+ * + colorWithCalibratedHue:saturation:brightness:alpha:  
+ * + colorWithCalibratedRed:green:blue:alpha:  
+ * + colorWithDeviceCyan:magenta:yellow:black:alpha:  
+ * + colorWithDeviceHue:saturation:brightness:alpha:  
+ * + colorWithDeviceRed:green:blue:alpha:  
+
+For instance, when you click on a orange color, it might generate code as following:
+
+{{{
+ [NSColor colorWithDeviceHue:0.08 saturation:1.00 brightness:1.00 alpha:1.00]
+}}}
+ 
+You can just go on completing your code such as:
+
+{{{
+ NSColor *aColor = [NSColor colorWithDeviceHue:0.08 saturation:1.00 brightness:1.00 alpha:1.00];
+}}}
+
+== Calibrated color or device color ==
+
+You can choose to generate the codes in HSB and RGB model by using the calibrated color space or the device. When you select to use calibrated color, it will generate code with _colorWithCalibratedHue:saturation:brightness:alpha:_ and _colorWithCalibratedRed:green:blue:alpha:_, otherwise, it will use   _colorWithDeviceHue:saturation:brightness:alpha:_ and _colorWithDeviceRed:green:blue:alpha:_ .
+
+Check the official document by Apple for detail: http://developer.apple.com/documentation/Cocoa/Reference/ApplicationKit/Classes/NSColor_Class/Reference/Reference.html
+
+= Note =
+
+== Pure black and pure white ==
+
+!ColorBy.colorPicker will ignores the colors in NSDeviceWhiteColorSpace , NSCalibratedWhiteColorSpace, NSDeviceBlackColorSpace, or
+NSCalibratedBlackColorSpace; It will automatically convert the colors into RGB color space. if the color that you want to use is pure white or pure black, just insert `[NSColor whiteColor]` or `[NSColor blackColor]`.
+
+== Xcode 3 and Leopard ==
+
+The color picker bundle of version 0.1 was built with 10.4 universal SDK, it runs with most applications on Leopard, but it will not appear in Xcode 3. I have no idea about the behaviors of Xcode 3, it seem that Xcode 3 can use color pickers complied with 10.5 SDK, but I am not quite sure.
+
+I complied another one with the 10.5 SDK, if you are now using Leopard, you might consider download this version: http://zonble.googlecode.com/files/colorBy.colorPicker.Leopard.0.1.zip
+
+|| http://farm3.static.flickr.com/2374/2104549913_793b995907_m.jpg ||
+
+Enjoy it!

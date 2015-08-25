@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'colorBy' target in the 'colorBy' project.
+//
+
+#ifdef __OBJC__
+    #import <Cocoa/Cocoa.h>
+#endif
